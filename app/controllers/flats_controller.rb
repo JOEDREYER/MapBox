@@ -1,3 +1,5 @@
+require 'openai_service'
+
 class FlatsController < ApplicationController
   before_action :set_flat, only: %i[ show edit update destroy ]
 
@@ -12,6 +14,8 @@ class FlatsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: {flat: flat})
       }
     end
+    response = OpenaiService.new('whatever you want to ask it').call
+    @openai_response = response
   end
   # GET /flats/1 or /flats/1.json
   def show
